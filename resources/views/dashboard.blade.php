@@ -8,7 +8,7 @@
                     <div class="card-header">Dashboard</div>
 
                     <div class="card-body">
-                        Welcome to your dashboard! <h2> {{$client->user_name}} </h2>
+                        Welcome to your dashboard! <h2> {{ $client->user_name }} </h2>
                     </div>
                 </div>
             </div>

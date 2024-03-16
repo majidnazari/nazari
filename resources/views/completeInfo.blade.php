@@ -37,12 +37,12 @@
     </div>
    @endif
 
-   <form method="post" action='{{ url("/$client->id/completeInfo") }}'>
-   {{ csrf_field() }}
+   <form method="post" action='{{ isset($client) ? url("/$client->id/completeInfo") : "" }}'>
+   @csrf
     <div class="form-group">
      <label>user_name</label>
-     <input type="text" name="id" class="form-control" value= {{ $client->id }} />
-     <input type="text" name="user_name" class="form-control" value= {{ $client->user_name }} />
+     <input type="text" name="id" class="form-control" value= {{ isset($client) ? $client->id : 0 }} />
+     <input type="text" name="user_name" class="form-control" value= {{  isset($client) ? $client->user_name : "" }} />
     </div>
     <div class="form-group">
      <label>Enter email</label>

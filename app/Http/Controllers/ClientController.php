@@ -7,6 +7,8 @@ use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
 use App\Jobs\SendEmailJob;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ClientController extends Controller
 {
@@ -66,6 +68,15 @@ class ClientController extends Controller
     {
        //dd("the client shoudl update and redirect to dashboard");
        SendEmailJob::dispatch($client)->onQueue('email');
+        
+       $data=[
+        "email"=> $request->email,
+        "mobile"=> $request->mobile,
+       ];
+
+       $client->update($data);
+       $client->save();
+
        return view('dashboard',['client' => $client]);
     }
 
@@ -75,5 +86,46 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         //
+    }
+
+    public function authClient(Request $request){
+       $client= Client::where('user_name',$request->user_name)->first();
+       //->where('password',$request->password)
+       
+       $credentials =[
+        'user_name' => $request->user_name,
+        'password' =>  $request->password,
+    ];
+
+    //dd( Hash::check($request->password, $client['password']));
+
+    if (Auth::guard('web')->attempt($credentials)) {
+        $request->session()->regenerate();
+
+         return view('dashboard',['client' => $client]);
+    }
+
+        return back()->withErrors([
+            'user_name' => 'The provided credentials do not match our records.',
+        ])->onlyInput('user_name');
+    }
+
+    public function logout(Request $request){
+
+        Auth::logout();
+
+    // Check if the user is logged out
+    if (Auth::check()) {
+        //dd("user  is still authenticated");
+        // User is still authenticated
+        // Handle the case where logout failed
+    } else {
+       // dd("user is logged out");
+
+        // User is logged out
+        // Perform any additional actions or redirect the user to a specific page
+        return redirect('/login');
+    }
+
     }
 }
