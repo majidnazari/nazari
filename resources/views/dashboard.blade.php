@@ -8,8 +8,12 @@
                     <div class="card-header">Dashboard</div>
 
                     <div class="card-body">
-                        Welcome to your dashboard! <h2> {{ $client->user_name }} </h2>
+                        Welcome to your dashboard! <h2> {{ isset($client) ? $client->user_name : '' }}   </h2>
                     </div>
+
+                    <li class="nav-item">
+                          <a class="nav-link" href="{{ route('article.list') }}">{{ __('articles') }}</a>
+                    </li>
                 </div>
             </div>
         </div>

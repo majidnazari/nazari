@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ClientController;
 use App\Models\Client;
 use Illuminate\Support\Facades\Route;
@@ -38,8 +39,7 @@ Route::post('/{client}/completeInfo', [ClientController::class,'update']);
 Route::group(['prefix'=> 'dashboard','middleware'=>['auth']],function(){
 
     Route::get('/',[ClientController::class,"index"])->name('dashboard');
-    Route::get('/completeInfo', function () {
-        return view('completeInfo');
-    });
+    Route::get('/all_article',[ArticleController::class,"index"])->name('article.list');
+   
     Route::get('/logout',[ClientController::class,"logout"])->name('logout');
 });

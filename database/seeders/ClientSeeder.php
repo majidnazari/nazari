@@ -16,19 +16,19 @@ class ClientSeeder extends Seeder
         $data=[
             [
                 "user_name" => "majid",
-                "password" => "12345",
+                "password" => '$2a$12$eyHrOz0.4X2yc2rgO0qxR.zO5kgAHC04z4qAFsTSYLcy3YkMD8ix6',
                 "mobile" => "09372120890",
                 "email" =>"majidnazarister@gmail.com"
             ],
             [
                 "user_name" => "ali",
-                "password" => "12345",
+                "password" => '$2a$12$eyHrOz0.4X2yc2rgO0qxR.zO5kgAHC04z4qAFsTSYLcy3YkMD8ix6',
                 "mobile" => "",
                 "email" =>""
             ],
             [
                 "user_name" => "hassan",
-                "password" => "12345",
+                "password" => '$2a$12$eyHrOz0.4X2yc2rgO0qxR.zO5kgAHC04z4qAFsTSYLcy3YkMD8ix6',
                 "mobile" => "",
                 "email" =>""
             ]
