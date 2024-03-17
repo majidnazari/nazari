@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             TagSeeder::class,
             ClientSeeder::class,
             CategorySeeder::class,
+            TaggableSeeder::class,
             // Add more seeders if needed
         ]);
         // \App\Models\User::factory(10)->create();

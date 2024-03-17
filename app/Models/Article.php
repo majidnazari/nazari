@@ -13,13 +13,25 @@ class Article extends Model
 {
     use HasFactory;
 
+    protected $fillable=[
+        "id",
+        "title",
+        "category_id",
+        "des"
+    ];
+
     // public function tag(): MorphOne
     // {
     //     return $this->morphOne(Tag::class, 'taggable');
     // }
-    public function tags(): MorphMany
+    // public function tags(): MorphMany
+    // {
+    //     return $this->morphMany(Tag::class, 'taggable');
+    // }
+
+    public function tags()
     {
-        return $this->morphMany(Tag::class, 'taggable');
+        return $this->morphToMany(Tag::class, 'taggable');
     }
 
     public function category(): BelongsTo

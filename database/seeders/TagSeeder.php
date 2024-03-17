@@ -15,21 +15,15 @@ class TagSeeder extends Seeder
     public function run(): void
     {
         $data=[
-            [
-                "taggable_type" =>  'App\Models\Article',
-                "taggable_id" => 1,
-               
-            ],
-            [
-                "taggable_type" => 'App\Models\Article',
-                "taggable_id" => 2,
-                
-            ],
-            [
-                "taggable_type" =>  'App\Models\Article',
-                "taggable_id" => 3,
-                
-            ]
+                [
+                    "name"=> 'تمرینی',               
+                ],
+                [
+                    "name"=> 'آموزشی',               
+                ],
+                [
+                    "name"=> 'فکری',
+                ]
             ];
 
             Tag::insert($data);

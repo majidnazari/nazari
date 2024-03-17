@@ -11,8 +11,12 @@ class Tag extends Model
     use HasFactory;
 
 
-    public function tagable(): MorphTo
+    // public function tagable(): MorphTo
+    // {
+    //     return $this->morphTo();
+    // }
+    public function articles()
     {
-        return $this->morphTo();
+        return $this->morphedByMany(Article::class, 'taggable');
     }
 }

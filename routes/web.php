@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\TagController;
 use App\Models\Client;
 use Illuminate\Support\Facades\Route;
 
@@ -39,7 +41,19 @@ Route::post('/{client}/completeInfo', [ClientController::class,'update']);
 Route::group(['prefix'=> 'dashboard','middleware'=>['auth']],function(){
 
     Route::get('/',[ClientController::class,"index"])->name('dashboard');
-    Route::get('/all_article',[ArticleController::class,"index"])->name('article.list');
+   // Route::get('/all_article',[ArticleController::class,"index"])->name('article.list');
    
     Route::get('/logout',[ClientController::class,"logout"])->name('logout');
+
+    Route::get('/articles/datatable', [ArticleController::class, 'datatable'])->name('articles.datatable');
+    Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
+    Route::get('/article/{id}', [ArticleController::class, 'show'])->name('article.show');
+    Route::delete('/article/{id}', [ArticleController::class, 'destroy'])->name('article.delete');
+    Route::post('/article', [ArticleController::class, 'store'])->name('article.store');
+
+    //Route::get('/articles/{article}/edit',[ArticleController::class,'edit'])->name('article.edit');
+    //Route::resource('article',ArticleController::class);
+
+    Route::get('category',[CategoryController::class,'index'])->name('categories.index');
+    Route::get('tag',[TagController::class,'index'])->name('tags.index');
 });

@@ -12,7 +12,7 @@
                     </div>
 
                     <li class="nav-item">
-                          <a class="nav-link" href="{{ route('article.list') }}">{{ __('articles') }}</a>
+                          <a class="nav-link" href="{{ route('articles.datatable') }}">{{ __('articles') }}</a>
                     </li>
                 </div>
             </div>
